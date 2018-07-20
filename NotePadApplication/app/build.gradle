@@ -1,28 +1,112 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 26
+
+    compileSdkVersion Integer.parseInt(project.ANDROID_COMPILE_SDK_VERSION)
+
     defaultConfig {
-        applicationId "com.noteapplication"
-        minSdkVersion 28
-        targetSdkVersion 26
-        versionCode 1
-        versionName "1.0"
+        applicationId project.APPLICATION_ID
+        minSdkVersion Integer.parseInt(project.ANDROID_MIN_SDK_VERSION)
+        targetSdkVersion Integer.parseInt(project.ANDROID_TARGET_SDK_VERSION)
+        flavorDimensions("notepad")
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
+
+    dataBinding {
+        enabled = true
+    }
+
     buildTypes {
-        release {
+
+        debug {
+            debuggable true
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
+
+        release {
+            debuggable false
+            minifyEnabled true
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    productFlavors {
+
+        develop {
+            versionNameSuffix '(develop)'
+            dimension "notepad"
+            versionCode 1
+            versionName '0.0.1'
+            matchingFallbacks = ['debug', 'release']
+        }
+
+        production {
+            versionNameSuffix '(release)'
+            dimension "notepad"
+            versionCode 1
+            versionName '0.0.1'
+            matchingFallbacks = ['debug', 'release']
+        }
+
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    sourceSets {
+        develop { java.srcDirs = ['src/develop/java', 'src/develop/java/'] }
+        production { java.srcDirs = ['src/production/java', 'src/production/java/'] }
+
     }
 }
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation 'com.android.support:appcompat-v7:26.1.0'
-    implementation 'com.android.support.constraint:constraint-layout:1.1.2'
+    /*implementation 'com.android.support.constraint:constraint-layout:1.1.2'
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
-    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
+    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'*/
+
+    //support
+    implementation supportDependencies.appcompat
+    implementation supportDependencies.design
+    implementation supportDependencies.support
+    implementation supportDependencies.constraint_layout
+    implementation supportDependencies.recyclerview
+    implementation supportDependencies.mediarouter
+
+    implementation RoomDependencies.room
+    annotationProcessor RoomDependencies.roomProcessor
+    implementation lifecycleDependencies.lifecycle
+    annotationProcessor lifecycleDependencies.lifecycleProcessor
+
+    //Dagger
+    implementation daggerDependencies.dagger
+    annotationProcessor daggerDependencies.daggerProcessor
+    annotationProcessor daggerDependencies.daggerAndroidProcessor
+    provided daggerDependencies.javaxProvided
+    implementation daggerDependencies.daggerSupport
+
+    //rx-java
+    implementation rxjavaDependencies.rxjava
+    implementation rxjavaDependencies.rxandroid
+
+    //glide
+    implementation glideDependencies.glide
+    annotationProcessor glideDependencies.glideProcessor
+
+    //butterknife
+    implementation butterKnifeDependencies.butterknife
+
+    //okhttp3
+    implementation okhttp3Dependencies.okhttp
+    implementation okhttp3Dependencies.logging_interceptor
+
+    //retrofit2
+    implementation retrofitDependencies.retrofit
+    implementation retrofitDependencies.converter_gson
+    implementation retrofitDependencies.adapter_rxjava2
 }
