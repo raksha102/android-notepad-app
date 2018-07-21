@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="data"
+            type="com.noteapplication.data.local.db.entity.NoteBookEntity" />
+
+        <variable
+            name="position"
+            type="Integer" />
+
+        <variable
+            name="showDelete"
+            type="boolean" />
+
+        <import type="android.view.View" />
+
+    </data>
+
+    <LinearLayout
+        android:id="@+id/layout_note_item"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp_8"
+            android:visibility="@{position == 0 ? View.VISIBLE : View.GONE}" />
+
+        <android.support.v7.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/dp_8"
+            app:cardBackgroundColor="#FFE8EFEF"
+            android:layout_marginEnd="@dimen/dp_8"
+            android:layout_marginStart="@dimen/dp_8"
+            android:orientation="vertical"
+            app:cardMaxElevation="7dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_margin="@dimen/dp_8">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:ellipsize="end"
+                    android:gravity="start"
+                    android:maxLines="1"
+                    android:text="@{data.content}"
+                    tools:text="text with data multilple example ways test cave rent"
+                    android:textColor="@android:color/black"
+                    android:textSize="@dimen/fnt_ms" />
+
+                <FrameLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:id="@+id/btn_delete"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/dp_8"
+                        android:text="DELETE"
+                        android:textStyle="bold"
+                        android:gravity="center"
+                        android:visibility="@{showDelete ? View.VISIBLE : View.GONE}"
+                        android:textColor="@android:color/black"
+                        android:textSize="@dimen/fnt_sl" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/dp_8"
+                        app:format_nb_date="@{data.modifiedDate}"
+                        android:gravity="center"
+                        android:visibility="@{showDelete ? View.GONE : View.VISIBLE}"
+                        android:textColor="@android:color/darker_gray"
+                        android:textSize="@dimen/fnt_sm" />
+
+                </FrameLayout>
+
+            </LinearLayout>
+
+        </android.support.v7.widget.CardView>
+
+    </LinearLayout>
+
+</layout>

@@ -1,5 +1,5 @@
 
-package com.noteapplication.ui.base.rxbus.rxbus;
+package com.noteapplication.ui.base.rxbus;
 
 
 public interface RxBusCallback {

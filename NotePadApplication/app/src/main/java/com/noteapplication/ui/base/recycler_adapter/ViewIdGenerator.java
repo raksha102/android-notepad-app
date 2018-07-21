@@ -1,7 +1,3 @@
-/*
- *  Copyright © 2018, Cognizant Technology Solutions.
- *  Written under contract by Robosoft Technologies Pvt. Ltd.
- */
 
 package com.noteapplication.ui.base.recycler_adapter;
 
@@ -14,7 +10,6 @@ import java.util.concurrent.atomic.AtomicInteger;
 /**
  * Unique ID generator for Android views
  *
- * @author Aleksandar Gotev
  */
 class ViewIdGenerator {
     private static final AtomicInteger sNextGeneratedId = new AtomicInteger(1);

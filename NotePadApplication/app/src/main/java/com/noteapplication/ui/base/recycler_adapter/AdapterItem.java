@@ -17,7 +17,6 @@ import java.util.List;
  * Abstract class to extend to create ViewHolders.
  *
  * @param <T> ViewHolder subclass
- * @author Aleksandar Gotev
  */
 public abstract class AdapterItem<T extends RecyclerAdapterViewHolder> implements Comparable<AdapterItem> {
 

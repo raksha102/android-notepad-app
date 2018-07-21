@@ -4,7 +4,6 @@ package com.noteapplication.ui.base.recycler_adapter;
 /**
  * Listener methods called when the user performs swipe gesture on one of the adapter items.
  *
- * @author Aleksandar Gotev
  */
 public interface SwipeListener {
     /**

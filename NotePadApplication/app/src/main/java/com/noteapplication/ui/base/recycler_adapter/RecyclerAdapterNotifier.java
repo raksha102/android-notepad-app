@@ -3,7 +3,8 @@ package com.noteapplication.ui.base.recycler_adapter;
 
 import android.os.Bundle;
 
-import com.noteapplication.ui.base.rxbus.rxbus.RxBus;
+import com.noteapplication.data.manager.SessionManagerService;
+import com.noteapplication.ui.base.rxbus.RxBus;
 
 
 /**
@@ -14,5 +15,7 @@ public interface RecyclerAdapterNotifier {
     void sendEvent(RecyclerAdapterViewHolder holder, Bundle data);
 
     RxBus getRxBus();
+
+    SessionManagerService getSessionManagerService();
 
 }

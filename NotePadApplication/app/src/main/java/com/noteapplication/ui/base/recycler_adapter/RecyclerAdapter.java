@@ -12,7 +12,8 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
 
-import com.noteapplication.ui.base.rxbus.rxbus.RxBus;
+import com.noteapplication.data.manager.SessionManagerService;
+import com.noteapplication.ui.base.rxbus.RxBus;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -28,12 +29,11 @@ import static android.support.v7.widget.helper.ItemTouchHelper.UP;
 
 /**
  * Helper class to easily work with Android's RecyclerView.Adapter.
- *
- * @author Aleksandar Gotev
  */
 public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapterViewHolder>
         implements RecyclerAdapterNotifier {
 
+    private final SessionManagerService mSessionManagerService;
     private LinkedHashMap<String, Integer> typeIds;
     private LinkedHashMap<Integer, AdapterItem> types;
     private List<AdapterItem> itemsList;
@@ -44,37 +44,17 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapterViewHol
     private boolean showFiltered;
 
     private RxBus mRxBus;
-    private String mPageId;
-    private boolean isLoading;
 
     /**
      * Creates a new recyclerAdapter
      */
-   /* @Inject
-    public RecyclerAdapter(RxBus rxBus) {
+    public RecyclerAdapter(RxBus rxBus, SessionManagerService sessionManagerService) {
         mRxBus = rxBus;
         typeIds = new LinkedHashMap<>();
         types = new LinkedHashMap<>();
         itemsList = new ArrayList<>();
         emptyItem = null;
-    }*/
-
-    public RecyclerAdapter(RxBus rxBus, String pageId) {
-        mRxBus = rxBus;
-        typeIds = new LinkedHashMap<>();
-        types = new LinkedHashMap<>();
-        itemsList = new ArrayList<>();
-        emptyItem = null;
-        mPageId = pageId;
-    }
-
-
-    public RecyclerAdapter(RxBus rxBus) {
-        mRxBus = rxBus;
-        typeIds = new LinkedHashMap<>();
-        types = new LinkedHashMap<>();
-        itemsList = new ArrayList<>();
-        emptyItem = null;
+        mSessionManagerService = sessionManagerService;
     }
 
     /**
@@ -541,7 +521,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapterViewHol
      */
     public void clearAndRemove() {
         int itemsSize = getItems().size();
-        if(itemsSize > 0) {
+        if (itemsSize > 0) {
             List<String> classNames = new ArrayList(typeIds.keySet());
             for (String key : classNames) {
                 try {
@@ -688,6 +668,10 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapterViewHol
         return mRxBus;
     }
 
+    public SessionManagerService getSessionManagerService() {
+        return mSessionManagerService;
+    }
+
     @Override
     public void onViewRecycled(RecyclerAdapterViewHolder holder) {
         super.onViewRecycled(holder);
@@ -697,35 +681,5 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapterViewHol
             if (adapterItem == null) return;
             adapterItem.onViewRecycled(holder);
         }
-    }
-
-    /*public void showLoadMore() {
-        if (!(getItemAtPosition(getItemCount() - 1) instanceof LoadMoreHorizontalViewItem)) {
-            LoadMoreHorizontalViewItem viewItem = new LoadMoreHorizontalViewItem();
-            isLoading = true;
-            add(viewItem);
-        }
-    }
-
-    public void hideLoadMore() {
-        if ((getItemAtPosition(getItemCount() - 1) instanceof LoadMoreHorizontalViewItem)) {
-            removeLastItemWithClass(LoadMoreHorizontalViewItem.class);
-            isLoading = false;
-        }
-    }
-
-    public void hideHomeLoginForDeals() {
-        AdapterItem adapterItem = getItemAtPosition(0);
-        if (adapterItem != null && (adapterItem instanceof HomeLoginHeaderViewItem)) {
-            removeItemAtPosition(0);
-        }
-    }*/
-
-    public boolean isLoading() {
-        return isLoading;
-    }
-
-    public String getPageId() {
-        return mPageId;
     }
 }

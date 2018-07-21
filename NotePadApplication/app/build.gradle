@@ -77,6 +77,7 @@ dependencies {
     implementation supportDependencies.constraint_layout
     implementation supportDependencies.recyclerview
     implementation supportDependencies.mediarouter
+    implementation supportDependencies.cardview
 
     implementation RoomDependencies.room
     annotationProcessor RoomDependencies.roomProcessor
@@ -100,6 +101,7 @@ dependencies {
 
     //butterknife
     implementation butterKnifeDependencies.butterknife
+    annotationProcessor butterKnifeDependencies.butterknifeAnnotationProcessor
 
     //okhttp3
     implementation okhttp3Dependencies.okhttp

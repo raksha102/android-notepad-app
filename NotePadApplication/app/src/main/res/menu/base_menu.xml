@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!--
+  ~  Copyright © 2018, Cognizant Technology Solutions.
+  ~  Written under contract by Robosoft Technologies Pvt. Ltd.
+  -->
+
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <item
+        android:id="@+id/menu_add"
+        android:title="@string/menu_add"
+        android:orderInCategory="102"
+        app:showAsAction="ifRoom"
+        tools:ignore="AlwaysShowAction" />
+
+    <item
+        android:id="@+id/menu_save"
+        android:orderInCategory="107"
+        android:title="@string/menu_save"
+        app:showAsAction="ifRoom"
+        tools:ignore="AlwaysShowAction" />
+
+</menu>

@@ -1,5 +1,5 @@
 
-package com.noteapplication.ui.base.rxbus.rxbus;
+package com.noteapplication.ui.base.rxbus;
 
 
 import io.reactivex.observers.DisposableObserver;

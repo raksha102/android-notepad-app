@@ -7,7 +7,8 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
 import com.noteapplication.BR;
-import com.noteapplication.ui.base.rxbus.rxbus.RxBus;
+import com.noteapplication.data.manager.SessionManagerService;
+import com.noteapplication.ui.base.rxbus.RxBus;
 
 import java.lang.ref.WeakReference;
 
@@ -16,7 +17,6 @@ import butterknife.ButterKnife;
 /**
  * Base ViewHolder class to extend in subclasses.
  *
- * @author Aleksandar Gotev
  */
 public abstract class RecyclerAdapterViewHolder extends RecyclerView.ViewHolder {
 
@@ -25,6 +25,7 @@ public abstract class RecyclerAdapterViewHolder extends RecyclerView.ViewHolder 
     private ViewDataBinding binding;
 
     private RxBus mRxBus;
+    private SessionManagerService mSessionManagerService;
 
     public RecyclerAdapterViewHolder(ViewDataBinding itemView, RecyclerAdapterNotifier adapter) {
         super(itemView.getRoot());
@@ -32,6 +33,7 @@ public abstract class RecyclerAdapterViewHolder extends RecyclerView.ViewHolder 
         this.binding = itemView;
         this.adapter = new WeakReference<>(adapter);
         mRxBus = adapter.getRxBus();
+        mSessionManagerService = adapter.getSessionManagerService();
     }
 
     protected void bind(Object object) {
@@ -62,4 +64,7 @@ public abstract class RecyclerAdapterViewHolder extends RecyclerView.ViewHolder 
         return mRxBus;
     }
 
+    public SessionManagerService getSessionManagerService() {
+        return mSessionManagerService;
+    }
 }
