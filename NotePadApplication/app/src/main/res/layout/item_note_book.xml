@@ -7,7 +7,7 @@
 
         <variable
             name="data"
-            type="com.noteapplication.data.local.db.entity.NoteBookEntity" />
+            type="com.noteapplication.data.model.Note" />
 
         <variable
             name="position"
@@ -55,7 +55,7 @@
                     android:ellipsize="end"
                     android:gravity="start"
                     android:maxLines="1"
-                    android:text="@{data.content}"
+                    android:text="@{data.text}"
                     tools:text="text with data multilple example ways test cave rent"
                     android:textColor="@android:color/black"
                     android:textSize="@dimen/fnt_ms" />

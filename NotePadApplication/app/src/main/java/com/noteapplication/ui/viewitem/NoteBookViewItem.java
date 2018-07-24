@@ -9,6 +9,7 @@ import com.noteapplication.R;
 import com.noteapplication.application.constants.AppConstants;
 import com.noteapplication.application.events.NavigationEvent;
 import com.noteapplication.data.local.db.entity.NoteBookEntity;
+import com.noteapplication.data.model.Note;
 import com.noteapplication.databinding.ItemNoteBookBinding;
 import com.noteapplication.ui.base.recycler_adapter.AdapterItem;
 import com.noteapplication.ui.base.recycler_adapter.RecyclerAdapterNotifier;
@@ -20,7 +21,7 @@ import io.reactivex.internal.util.AppendOnlyLinkedArrayList;
 
 public class NoteBookViewItem extends AdapterItem<NoteBookViewItem.Holder> {
 
-    private NoteBookEntity mData;
+    private Note mData;
 
     @Override
     public boolean onFilter(String searchTerm) {
@@ -39,7 +40,7 @@ public class NoteBookViewItem extends AdapterItem<NoteBookViewItem.Holder> {
 
     @Override
     public void setData(Object obj) {
-        mData = (NoteBookEntity) obj;
+        mData = (Note) obj;
     }
 
     @Override

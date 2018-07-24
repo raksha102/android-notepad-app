@@ -1,6 +1,5 @@
 package com.noteapplication.ui.module.landing;
 
-import android.arch.lifecycle.ViewModelProviders;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -12,23 +11,27 @@ import android.view.ViewGroup;
 
 import com.noteapplication.R;
 import com.noteapplication.application.events.NavigationEvent;
-import com.noteapplication.data.local.db.entity.NoteBookEntity;
+import com.noteapplication.data.model.Note;
 import com.noteapplication.databinding.FragmentNotePadLandingBinding;
 import com.noteapplication.ui.base.BaseFragment;
 import com.noteapplication.ui.base.recycler_adapter.AdapterItem;
 import com.noteapplication.ui.base.recycler_adapter.RecyclerAdapter;
 import com.noteapplication.ui.model.data.AppToolbar;
-import com.noteapplication.ui.model.view.NoteBookViewModel;
+import com.noteapplication.ui.model.view.NoteBookViewModelTemp;
 import com.noteapplication.ui.viewitem.NoteBookViewItem;
 import com.noteapplication.util.Logger;
 
 import java.util.List;
 
+import javax.inject.Inject;
+
 public class NotePadLandingFragment extends BaseFragment {
 
     private static final String TAG = NotePadLandingFragment.class.getSimpleName();
     private RecyclerAdapter mAdapter;
-    private NoteBookViewModel mViewModel;
+
+    @Inject
+    NoteBookViewModelTemp mViewModel;
 
     public static NotePadLandingFragment newInstance() {
 
@@ -60,19 +63,19 @@ public class NotePadLandingFragment extends BaseFragment {
     @Override
     protected void initViews(View view) {
         setHasOptionsMenu(true);
-        mViewModel =
-                ViewModelProviders.of(getActivity()).get(NoteBookViewModel.class);
-        mViewModel.getNoteBookLiveData().observe(getActivity(), noteBookEntities -> updateItems(noteBookEntities));
+/*        mViewModel =
+                ViewModelProviders.of(getActivity()).get(NoteBookViewModelTemp.class);*/
+        mViewModel.getNoteBookLiveData().observe(getActivity(), notes -> updateItems(notes));
     }
 
-    private void updateItems(List<NoteBookEntity> noteBookEntities) {
+    private void updateItems(List<Note> notes) {
         Logger.d(TAG, "NoteBookViewModel : updateItems");
         mAdapter.clear();
-        if (noteBookEntities == null || noteBookEntities.size() <= 0) return;
+        if (notes == null || notes.size() <= 0) return;
         AdapterItem viewItem;
-        for (NoteBookEntity entity : noteBookEntities) {
+        for (Note note : notes) {
             viewItem = new NoteBookViewItem();
-            viewItem.setData(entity);
+            viewItem.setData(note);
             mAdapter.add(viewItem);
         }
     }
@@ -83,12 +86,12 @@ public class NotePadLandingFragment extends BaseFragment {
 
         switch (event.getFlag()) {
             case NavigationEvent.EVENT_ON_NOTE_BOOK_ITEM_LONG_CLICK:
-                onItemLongClick((NoteBookEntity)event.getData());
+                onItemLongClick((Note) event.getData());
                 break;
         }
     }
 
-    private void onItemLongClick(NoteBookEntity data) {
+    private void onItemLongClick(Note data) {
         mViewModel.deleteItem(data.getId());
     }
 

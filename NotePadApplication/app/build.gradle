@@ -80,9 +80,11 @@ dependencies {
     implementation supportDependencies.cardview
 
     implementation RoomDependencies.room
+    implementation RoomDependencies.roomRxJava2
     annotationProcessor RoomDependencies.roomProcessor
     implementation lifecycleDependencies.lifecycle
     annotationProcessor lifecycleDependencies.lifecycleProcessor
+    implementation lifecycleDependencies.liveReactiveStream
 
     //Dagger
     implementation daggerDependencies.dagger

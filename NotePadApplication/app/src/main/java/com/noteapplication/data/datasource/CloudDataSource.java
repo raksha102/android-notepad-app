@@ -1,13 +1,11 @@
-package com.noteapplication.data;
+package com.noteapplication.data.datasource;
 
 
 import com.noteapplication.data.model.response.main.NoteBookResponse;
 
 import io.reactivex.Flowable;
-import retrofit2.http.GET;
 
-public interface ApiService {
+public interface CloudDataSource {
 
-    @GET("/notes")
     Flowable<NoteBookResponse> getNotes();
 }

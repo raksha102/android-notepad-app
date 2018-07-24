@@ -69,14 +69,6 @@ ext {
 
     ]
 
-    twitterDependencies = [
-            twitter: buildDependency(twitterPackage, 'twitter-core', twitterVersion)
-    ]
-
-    facebookDependencies = [
-            facebook: buildDependency(facebookPackage, 'facebook-android-sdk', facebookVersion)
-    ]
-
     daggerDependencies = [
             dagger                : buildDependency(daggerPackage, 'dagger', daggerVersion),
             daggerProcessor       : buildDependency(daggerPackage, 'dagger-compiler', daggerVersion),
@@ -111,12 +103,14 @@ ext {
 
     RoomDependencies = [
             room         : buildDependency(roomPackage, 'runtime', lifecycleVersion),
-            roomProcessor: buildDependency(roomPackage, 'compiler', lifecycleVersion)
+            roomProcessor: buildDependency(roomPackage, 'compiler', lifecycleVersion),
+            roomRxJava2   : buildDependency(roomPackage, 'rxjava2', lifecycleVersion)
     ]
 
     lifecycleDependencies = [
             lifecycle         : buildDependency(lifecyclePackage, 'extensions', lifecycleVersion),
             lifecycleProcessor: buildDependency(lifecyclePackage, 'compiler', lifecycleVersion),
+            liveReactiveStream  : buildDependency(lifecyclePackage, 'reactivestreams', lifecycleVersion)
     ]
 
 }

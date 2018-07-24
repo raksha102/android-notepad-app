@@ -15,11 +15,11 @@ import java.util.List;
 public class NoteBookViewModel extends AndroidViewModel {
 
     private static final String TAG = NoteBookViewModel.class.getSimpleName();
-    private final LiveData<List<NoteBookEntity>> mNoteBookLiveData;
+    private LiveData<List<NoteBookEntity>> mNoteBookLiveData;
 
     public NoteBookViewModel(@NonNull Application application) {
         super(application);
-        mNoteBookLiveData = AppDataBase.getAppDatabase().noteBookDao().getNoteBookData();
+       // mNoteBookLiveData = AppDataBase.getAppDatabase().noteBookDao().getNoteBookData();
     }
 
     public void saveData(String note) {
