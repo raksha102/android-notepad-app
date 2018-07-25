@@ -1,5 +1,14 @@
 package com.noteapplication.data.datasource;
 
 
-public class MemoryDataSource {
+import com.noteapplication.data.model.response.main.NoteBookResponse;
+
+import io.reactivex.Flowable;
+
+/**
+ * file system data source
+ */
+public interface MemoryDataSource {
+
+    Flowable<NoteBookResponse> getNotes();
 }

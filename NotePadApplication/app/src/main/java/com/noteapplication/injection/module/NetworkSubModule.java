@@ -9,7 +9,8 @@ import android.support.annotation.NonNull;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import com.noteapplication.BuildConfig;
+import com.noteapplication.application.constants.NetworkConstants;
+import com.noteapplication.data.ApiService;
 import com.noteapplication.data.LoggingInterceptor;
 import com.noteapplication.injection.scope.ApplicationScope;
 import com.noteapplication.util.Logger;
@@ -41,10 +42,16 @@ public class NetworkSubModule {
 
     @Provides
     @ApplicationScope
+    ApiService provideApiService(Retrofit restClient) {
+        return restClient.create(ApiService.class);
+    }
+
+    @Provides
+    @ApplicationScope
     Retrofit provideRetrofit(Gson gson, OkHttpClient okHttpClient) {
 
         return new Retrofit.Builder()
-                .baseUrl("")
+                .baseUrl("http://google.com")
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                 .addConverterFactory(GsonConverterFactory.create(gson))
                 .client(okHttpClient)
@@ -84,8 +91,8 @@ public class NetworkSubModule {
             return response;
         });
 
-        //client.connectTimeout(NetworkConstants.API_TIMEOUT, TimeUnit.SECONDS);
-       // client.readTimeout(NetworkConstants.API_TIMEOUT, TimeUnit.SECONDS);
+        client.connectTimeout(NetworkConstants.API_TIMEOUT, TimeUnit.SECONDS);
+        client.readTimeout(NetworkConstants.API_TIMEOUT, TimeUnit.SECONDS);
         return client.build();
     }
 

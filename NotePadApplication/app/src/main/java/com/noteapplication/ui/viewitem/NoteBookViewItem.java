@@ -8,7 +8,6 @@ import com.noteapplication.BR;
 import com.noteapplication.R;
 import com.noteapplication.application.constants.AppConstants;
 import com.noteapplication.application.events.NavigationEvent;
-import com.noteapplication.data.local.db.entity.NoteBookEntity;
 import com.noteapplication.data.model.Note;
 import com.noteapplication.databinding.ItemNoteBookBinding;
 import com.noteapplication.ui.base.recycler_adapter.AdapterItem;
@@ -54,8 +53,10 @@ public class NoteBookViewItem extends AdapterItem<NoteBookViewItem.Holder> {
 
         binder.layoutNoteItem.setOnLongClickListener(v -> {
             updateDeleteFlag(holder, true, binder);
-            return false;
+            return true;
         });
+
+        binder.layoutNoteItem.setOnClickListener(v -> RxEventUtils.sendEventWithDataAndType(holder.getRxBus(), NavigationEvent.EVENT_ON_NOTE_BOOK_ITEM_CLICK, mData, AppConstants.LANDING_SCREEN));
 
         binder.btnDelete.setOnClickListener(v ->
                 RxEventUtils.sendEventWithDataAndType(holder.getRxBus(), NavigationEvent.EVENT_ON_NOTE_BOOK_ITEM_LONG_CLICK, mData, AppConstants.LANDING_SCREEN));
@@ -65,9 +66,8 @@ public class NoteBookViewItem extends AdapterItem<NoteBookViewItem.Holder> {
                         o instanceof NavigationEvent && ((NavigationEvent) o).getFlag().equals(NavigationEvent.EVENT_CLEAR_DELETE_FLAG))
                 .cast(NavigationEvent.class)
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(navigationEvent -> {
-                    updateDeleteFlag(holder, false, binder);
-                });
+                .subscribe(navigationEvent ->
+                        updateDeleteFlag(holder, false, binder));
     }
 
     private void updateDeleteFlag(Holder holder, boolean showDelete, ItemNoteBookBinding binder) {

@@ -5,8 +5,8 @@ public class Note {
     private long id;
     private long modifiedDate;
 
-    public Note(String text, long id, long modifiedDate) {
-        this.text = text;
+    public Note(long id, String content, long modifiedDate) {
+        this.text = content;
         this.id = id;
         this.modifiedDate = modifiedDate;
     }

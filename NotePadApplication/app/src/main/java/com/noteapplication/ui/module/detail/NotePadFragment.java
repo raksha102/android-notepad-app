@@ -1,7 +1,6 @@
 package com.noteapplication.ui.module.detail;
 
 
-import android.arch.lifecycle.ViewModelProviders;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -16,15 +15,23 @@ import com.noteapplication.databinding.FragmentNotePadBinding;
 import com.noteapplication.ui.base.BaseFragment;
 import com.noteapplication.ui.model.data.AppToolbar;
 import com.noteapplication.ui.model.view.NoteBookViewModel;
+import com.noteapplication.util.Logger;
+
+import javax.inject.Inject;
 
 import butterknife.BindView;
 
 public class NotePadFragment extends BaseFragment {
 
+    private static final String TAG = NotePadFragment.class.getSimpleName();
+
     @BindView(R.id.txt_note)
     TextView mTxtNote;
 
-    private NoteBookViewModel mViewModel;
+    @Inject
+    NoteBookViewModel mViewModel;
+
+    private boolean isSaving = false;
 
     public static NotePadFragment newInstance() {
 
@@ -53,9 +60,11 @@ public class NotePadFragment extends BaseFragment {
 
     @Override
     protected void initViews(View view) {
+        Logger.i(TAG, "ViewModel :" + mViewModel);
         setHasOptionsMenu(true);
-        mViewModel =
-                ViewModelProviders.of(getActivity()).get(NoteBookViewModel.class);
+        if (mViewModel.getSelectedItem() != null) {
+            mTxtNote.setText(mViewModel.getSelectedItem().getText());
+        }
     }
 
     @Override
@@ -81,6 +90,10 @@ public class NotePadFragment extends BaseFragment {
     }
 
     private void handleSaveButtonClick() {
+
+        if (isSaving) return;
+
+        isSaving = true;
         getNavigator().hideKeyBoard();
         mViewModel.saveData(mTxtNote.getText().toString());
         getActivity().onBackPressed();

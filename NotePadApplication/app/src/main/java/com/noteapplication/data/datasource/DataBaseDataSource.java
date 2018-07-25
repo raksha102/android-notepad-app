@@ -7,7 +7,15 @@ import java.util.List;
 
 import io.reactivex.Flowable;
 
+/**
+ * Data will be store in database
+ *
+ */
 public interface DataBaseDataSource {
 
     Flowable<List<NoteBookEntity>> getNotes();
+
+    void saveNotes(NoteBookEntity noteBookEntity);
+
+    void updateNotes(long id, String note);
 }

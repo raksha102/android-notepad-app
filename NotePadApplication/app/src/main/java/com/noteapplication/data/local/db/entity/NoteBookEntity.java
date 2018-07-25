@@ -26,6 +26,12 @@ public class NoteBookEntity {
         modifiedDate = System.currentTimeMillis();
     }
 
+    public NoteBookEntity(long id, String note) {
+        this.id = id;
+        this.content = note;
+        modifiedDate = System.currentTimeMillis();
+    }
+
     public long getId() {
         return id;
     }

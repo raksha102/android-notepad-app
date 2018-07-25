@@ -7,5 +7,7 @@
 
     <color name="menu_txt_color">#000000</color>
     <color name="toolbar_txt_color">#000000</color>
+    <color name="bg_color_note">#FFE8EFEF</color>
+    <color name="bg_color_note_on_select">#d4f4f4</color>
 
 </resources>

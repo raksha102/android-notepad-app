@@ -7,6 +7,7 @@ public class NavigationEvent<T> {
 
     public static final String EVENT_ON_NOTE_BOOK_ITEM_LONG_CLICK = "event_on_note_book_item_long_click";
     public static final String EVENT_CLEAR_DELETE_FLAG = "event_clear_delete_flag";
+    public static final String EVENT_ON_NOTE_BOOK_ITEM_CLICK = "event_on_note_book_item_click";
 
     private String flag;
     private String tag;

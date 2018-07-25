@@ -12,7 +12,7 @@ import javax.inject.Inject;
 import io.reactivex.Flowable;
 
 @ApplicationScope
-public class DatabaseDataSourceImpl implements  DataBaseDataSource {
+public class DatabaseDataSourceImpl implements DataBaseDataSource {
 
     @Inject
     public DatabaseDataSourceImpl() {
@@ -21,5 +21,15 @@ public class DatabaseDataSourceImpl implements  DataBaseDataSource {
 
     public Flowable<List<NoteBookEntity>> getNotes() {
         return AppDataBase.getAppDatabase().noteBookDao().getNoteBookData();
+    }
+
+    @Override
+    public void saveNotes(NoteBookEntity noteBookEntity) {
+        AppDataBase.getAppDatabase().noteBookDao().insert(noteBookEntity);
+    }
+
+    @Override
+    public void updateNotes(long id, String note) {
+        AppDataBase.getAppDatabase().noteBookDao().update(new NoteBookEntity(id, note));
     }
 }

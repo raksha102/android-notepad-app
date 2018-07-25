@@ -17,7 +17,7 @@ import com.noteapplication.ui.base.BaseFragment;
 import com.noteapplication.ui.base.recycler_adapter.AdapterItem;
 import com.noteapplication.ui.base.recycler_adapter.RecyclerAdapter;
 import com.noteapplication.ui.model.data.AppToolbar;
-import com.noteapplication.ui.model.view.NoteBookViewModelTemp;
+import com.noteapplication.ui.model.view.NoteBookViewModel;
 import com.noteapplication.ui.viewitem.NoteBookViewItem;
 import com.noteapplication.util.Logger;
 
@@ -28,10 +28,11 @@ import javax.inject.Inject;
 public class NotePadLandingFragment extends BaseFragment {
 
     private static final String TAG = NotePadLandingFragment.class.getSimpleName();
-    private RecyclerAdapter mAdapter;
 
     @Inject
-    NoteBookViewModelTemp mViewModel;
+    NoteBookViewModel mViewModel;
+
+    private RecyclerAdapter mAdapter;
 
     public static NotePadLandingFragment newInstance() {
 
@@ -62,9 +63,8 @@ public class NotePadLandingFragment extends BaseFragment {
 
     @Override
     protected void initViews(View view) {
+        Logger.d(TAG, "ViewModel :" + mViewModel);
         setHasOptionsMenu(true);
-/*        mViewModel =
-                ViewModelProviders.of(getActivity()).get(NoteBookViewModelTemp.class);*/
         mViewModel.getNoteBookLiveData().observe(getActivity(), notes -> updateItems(notes));
     }
 
@@ -83,16 +83,6 @@ public class NotePadLandingFragment extends BaseFragment {
     @Override
     protected void handleNavigationEvents(NavigationEvent event) {
         super.handleNavigationEvents(event);
-
-        switch (event.getFlag()) {
-            case NavigationEvent.EVENT_ON_NOTE_BOOK_ITEM_LONG_CLICK:
-                onItemLongClick((Note) event.getData());
-                break;
-        }
-    }
-
-    private void onItemLongClick(Note data) {
-        mViewModel.deleteItem(data.getId());
     }
 
     @Override
@@ -115,6 +105,7 @@ public class NotePadLandingFragment extends BaseFragment {
     }
 
     private void handleAddMenuClick() {
+        mViewModel.setSelectedItem(null);
         getNavigator().launchNotePadScreen();
     }
 }
