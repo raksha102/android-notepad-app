@@ -71,4 +71,9 @@ public class NoteBookRepositoryImpl implements NoteBookRepository {
     public void updateNotes(long id, String note) {
         mDatabaseDataSource.updateNotes(id, note);
     }
+
+    @Override
+    public void delete(long id) {
+        mDatabaseDataSource.delete(id);
+    }
 }

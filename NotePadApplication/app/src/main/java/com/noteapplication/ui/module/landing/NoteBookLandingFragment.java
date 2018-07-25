@@ -25,20 +25,20 @@ import java.util.List;
 
 import javax.inject.Inject;
 
-public class NotePadLandingFragment extends BaseFragment {
+public class NoteBookLandingFragment extends BaseFragment {
 
-    private static final String TAG = NotePadLandingFragment.class.getSimpleName();
+    private static final String TAG = NoteBookLandingFragment.class.getSimpleName();
 
     @Inject
     NoteBookViewModel mViewModel;
 
     private RecyclerAdapter mAdapter;
 
-    public static NotePadLandingFragment newInstance() {
+    public static NoteBookLandingFragment newInstance() {
 
         Bundle args = new Bundle();
 
-        NotePadLandingFragment fragment = new NotePadLandingFragment();
+        NoteBookLandingFragment fragment = new NoteBookLandingFragment();
         fragment.setArguments(args);
         return fragment;
     }
@@ -65,6 +65,7 @@ public class NotePadLandingFragment extends BaseFragment {
     protected void initViews(View view) {
         Logger.d(TAG, "ViewModel :" + mViewModel);
         setHasOptionsMenu(true);
+        mViewModel.init();
         mViewModel.getNoteBookLiveData().observe(getActivity(), notes -> updateItems(notes));
     }
 

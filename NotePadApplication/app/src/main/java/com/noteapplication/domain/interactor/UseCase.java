@@ -9,6 +9,7 @@ package com.noteapplication.domain.interactor;
 import com.noteapplication.domain.executor.PostExecutionThread;
 import com.noteapplication.domain.executor.ThreadExecutor;
 
+import io.reactivex.FlowableTransformer;
 import io.reactivex.SingleTransformer;
 import io.reactivex.observers.DisposableObserver;
 
@@ -43,11 +44,7 @@ public abstract class UseCase<T, Params> {
      */
     public abstract T execute(Params params);
 
-    protected <Upstream> SingleTransformer<Upstream, Upstream> getApiExecutor() {
-        return upstream -> upstream.observeOn(postExecutionThread.getScheduler());
-    }
-
-    protected <Upstream> SingleTransformer<Upstream, Upstream> getRetrofitExecutor() {
+    protected <Upstream> FlowableTransformer<Upstream, Upstream> getApiExecutor() {
         return upstream -> upstream
                 .subscribeOn(threadExecutor.getScheduler())
                 .observeOn(postExecutionThread.getScheduler());

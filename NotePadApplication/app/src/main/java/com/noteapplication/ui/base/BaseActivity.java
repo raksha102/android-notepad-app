@@ -83,18 +83,6 @@ public abstract class BaseActivity extends AppCompatActivity implements HasSuppo
         return R.id.frag_container;
     }
 
-    /**
-     * Set ActionBar for the base layout
-     */
-    protected void setupActionBar() {
-        if (getToolBar() != null) {
-            setSupportActionBar(getToolBar());
-            if (getSupportActionBar() != null) {
-                getSupportActionBar().setHomeButtonEnabled(true);
-            }
-        }
-    }
-
     private void registerEvents() {
         mRxBusHelper = new RxBusHelper();
         mRxBusHelper.registerEvents(mRxBus, TAG, this);

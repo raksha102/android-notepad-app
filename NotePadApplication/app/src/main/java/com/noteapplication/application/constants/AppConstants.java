@@ -4,6 +4,9 @@ package com.noteapplication.application.constants;
 import android.support.annotation.IntDef;
 import android.support.annotation.StringDef;
 
+/**
+ * Application level constants
+ */
 public class AppConstants {
 
     @IntDef({LANDING_SCREEN, ADD_SCREEN})

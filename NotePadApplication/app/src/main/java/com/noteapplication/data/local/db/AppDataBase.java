@@ -5,7 +5,7 @@ import android.arch.persistence.room.Database;
 import android.arch.persistence.room.Room;
 import android.arch.persistence.room.RoomDatabase;
 
-import com.noteapplication.application.NotePadApplication;
+import com.noteapplication.application.NoteBookApplication;
 import com.noteapplication.application.constants.DBConstants;
 import com.noteapplication.data.local.db.dao.NoteBookDao;
 import com.noteapplication.data.local.db.entity.NoteBookEntity;
@@ -18,7 +18,7 @@ public abstract class AppDataBase extends RoomDatabase {
     public static AppDataBase getAppDatabase() {
         if (INSTANCE == null) {
             INSTANCE =
-                    Room.databaseBuilder(NotePadApplication.getApplicationInstance(), AppDataBase.class, DBConstants.DB_NAME)
+                    Room.databaseBuilder(NoteBookApplication.getApplicationInstance(), AppDataBase.class, DBConstants.DB_NAME)
                             .allowMainThreadQueries()
                             .fallbackToDestructiveMigration()
                             .build();

@@ -4,11 +4,10 @@ package com.noteapplication.ui.base.recycler_adapter;
 import android.content.Context;
 import android.content.res.Resources;
 import android.databinding.ViewDataBinding;
-import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.util.Log;
 
-import com.noteapplication.application.NotePadApplication;
+import com.noteapplication.application.NoteBookApplication;
 
 import java.lang.reflect.InvocationTargetException;
 import java.util.List;
@@ -24,24 +23,11 @@ public abstract class AdapterItem<T extends RecyclerAdapterViewHolder> implement
     public static final String CLICK_EVENT = "click";
 
     public Resources getResources() {
-        return NotePadApplication.getApplicationInstance().getResources();
+        return NoteBookApplication.getApplicationInstance().getResources();
     }
 
     public Context getAppContext() {
-        return NotePadApplication.getApplicationInstance().getApplicationContext();
-    }
-
-    /**
-     * Gets called by {@link RecyclerAdapter#sendEvent(RecyclerAdapterViewHolder, Bundle)}
-     *
-     * @param position position at which the event happened
-     * @param data     additional click data
-     * @return true if the view must be rebinded after this method returns (e.g. you updated some
-     * data in the model and you want to display it), otherwise false (e.g. if you are
-     * simply handling a click which does not involve data changes)
-     */
-    public boolean onEvent(int position, Bundle data) {
-        return false;
+        return NoteBookApplication.getApplicationInstance().getApplicationContext();
     }
 
     /**

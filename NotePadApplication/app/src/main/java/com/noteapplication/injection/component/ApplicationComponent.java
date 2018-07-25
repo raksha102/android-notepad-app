@@ -3,7 +3,7 @@ package com.noteapplication.injection.component;
 
 import android.app.Application;
 
-import com.noteapplication.application.NotePadApplication;
+import com.noteapplication.application.NoteBookApplication;
 import com.noteapplication.injection.module.ActivityBuilder;
 import com.noteapplication.injection.module.ApplicationModule;
 import com.noteapplication.injection.module.NetworkModule;
@@ -18,7 +18,7 @@ import dagger.android.AndroidInjectionModule;
         NetworkModule.class})
 public interface ApplicationComponent {
 
-    void inject(NotePadApplication app);
+    void inject(NoteBookApplication app);
 
     @Component.Builder
     interface Builder {

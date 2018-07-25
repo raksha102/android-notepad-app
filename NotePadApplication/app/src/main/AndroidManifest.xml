@@ -3,7 +3,7 @@
     package="com.noteapplication">
 
     <application
-        android:name=".application.NotePadApplication"
+        android:name=".application.NoteBookApplication"
         android:allowBackup="false"
         android:fullBackupContent="false"
         android:icon="@mipmap/ic_launcher"

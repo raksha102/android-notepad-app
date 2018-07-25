@@ -14,7 +14,7 @@ public class AppToolbar {
     private boolean addEnabled;
     private boolean saveEnabled;
 
-    public AppToolbar(AppToolBarBuilder builder) {
+    private AppToolbar(AppToolBarBuilder builder) {
         this.title = builder.title;
         this.actionBarEnabled = builder.actionBarEnabled;
         this.backButtonEnabled = builder.backButtonEnabled;

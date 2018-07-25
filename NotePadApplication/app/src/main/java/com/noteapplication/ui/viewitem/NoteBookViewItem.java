@@ -2,7 +2,6 @@
 package com.noteapplication.ui.viewitem;
 
 import android.databinding.ViewDataBinding;
-import android.os.Bundle;
 
 import com.noteapplication.BR;
 import com.noteapplication.R;
@@ -75,11 +74,6 @@ public class NoteBookViewItem extends AdapterItem<NoteBookViewItem.Holder> {
         binder.setShowDelete(showDelete);
         binder.notifyPropertyChanged(BR.showDelete);
         binder.executePendingBindings();
-    }
-
-    @Override
-    public boolean onEvent(int position, Bundle data) {
-        return false;
     }
 
     @Override

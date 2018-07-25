@@ -16,7 +16,7 @@ import com.noteapplication.injection.scope.ActivityScope;
 import com.noteapplication.injection.scope.ContainerId;
 import com.noteapplication.ui.base.BaseActivity;
 import com.noteapplication.ui.module.detail.NotePadFragment;
-import com.noteapplication.ui.module.landing.NotePadLandingFragment;
+import com.noteapplication.ui.module.landing.NoteBookLandingFragment;
 import com.noteapplication.util.IKeyBoardUtil;
 
 import javax.inject.Inject;
@@ -42,7 +42,7 @@ public class AppNavigatorImpl implements AppNavigator {
 
     @Override
     public void launchNotePadLandingScreen() {
-        replaceFragment(mContainerId, NotePadLandingFragment.newInstance());
+        replaceFragment(mContainerId, NoteBookLandingFragment.newInstance());
     }
 
     @Override

@@ -4,7 +4,6 @@ package com.noteapplication.ui.base.recycler_adapter;
 import android.content.Context;
 import android.databinding.DataBindingUtil;
 import android.databinding.ViewDataBinding;
-import android.os.Bundle;
 import android.support.v4.util.Pair;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.helper.ItemTouchHelper;
@@ -371,17 +370,6 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapterViewHol
             return 1;
 
         return getItems().size();
-    }
-
-    @Override
-    public void sendEvent(RecyclerAdapterViewHolder holder, Bundle data) {
-        int position = holder.getAdapterPosition();
-
-        if (position < 0 || position >= getItems().size())
-            return;
-
-        if (getItems().get(position).onEvent(position, data))
-            notifyItemChanged(position);
     }
 
     /**

@@ -96,6 +96,7 @@ public class NotePadFragment extends BaseFragment {
         isSaving = true;
         getNavigator().hideKeyBoard();
         mViewModel.saveData(mTxtNote.getText().toString());
-        getActivity().onBackPressed();
+        if (getActivity() != null)
+            getActivity().onBackPressed();
     }
 }

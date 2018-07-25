@@ -32,4 +32,9 @@ public class DatabaseDataSourceImpl implements DataBaseDataSource {
     public void updateNotes(long id, String note) {
         AppDataBase.getAppDatabase().noteBookDao().update(new NoteBookEntity(id, note));
     }
+
+    @Override
+    public void delete(long id) {
+        AppDataBase.getAppDatabase().noteBookDao().delete(id);
+    }
 }

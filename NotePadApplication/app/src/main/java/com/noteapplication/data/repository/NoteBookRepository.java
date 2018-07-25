@@ -16,4 +16,6 @@ public interface NoteBookRepository {
     void saveNotes(String note);
 
     void updateNotes(long id, String note);
+
+    void delete(long id);
 }

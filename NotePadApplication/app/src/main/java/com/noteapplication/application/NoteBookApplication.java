@@ -7,7 +7,8 @@ package com.noteapplication.application;
 
 import android.app.Activity;
 import android.app.Application;
-import android.support.v7.app.AppCompatDelegate;
+import android.content.Context;
+import android.support.multidex.MultiDex;
 
 import com.noteapplication.injection.component.DaggerApplicationComponent;
 
@@ -17,26 +18,26 @@ import dagger.android.AndroidInjector;
 import dagger.android.DispatchingAndroidInjector;
 import dagger.android.HasActivityInjector;
 
-public class NotePadApplication extends Application implements HasActivityInjector {
+public class NoteBookApplication extends Application implements HasActivityInjector {
 
     @Inject
     DispatchingAndroidInjector<Activity> activityDispatchingAndroidInjector;
 
-    private static NotePadApplication sInstance;
+    private static NoteBookApplication sInstance;
 
-    public NotePadApplication() {
+    public NoteBookApplication() {
         sInstance = this;
     }
 
-    public static NotePadApplication getApplicationInstance() {
+    public static NoteBookApplication getApplicationInstance() {
         return sInstance;
     }
 
-   /* @Override
+    @Override
     protected void attachBaseContext(Context base) {
         super.attachBaseContext(base);
         MultiDex.install(this);
-    }*/
+    }
 
     @Override
     public void onCreate() {

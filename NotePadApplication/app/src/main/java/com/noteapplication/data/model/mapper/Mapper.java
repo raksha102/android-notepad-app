@@ -7,6 +7,10 @@ import com.noteapplication.data.model.response.main.NoteBookResponse;
 
 import java.util.List;
 
+/**
+ * Data mapper class
+ * Converts data from different data source to ui format
+ */
 public interface Mapper {
 
     List<Note> transform(List<NoteBookEntity> data);

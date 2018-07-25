@@ -6,7 +6,6 @@ import android.arch.lifecycle.LiveDataReactiveStreams;
 import android.arch.lifecycle.ViewModel;
 
 import com.noteapplication.application.events.NavigationEvent;
-import com.noteapplication.data.local.db.AppDataBase;
 import com.noteapplication.data.model.Note;
 import com.noteapplication.data.repository.NoteBookRepository;
 import com.noteapplication.injection.scope.ActivityScope;
@@ -35,27 +34,30 @@ public class NoteBookViewModel extends ViewModel {
         mNoteBookRepository = noteBookRepository;
         mNavigator = navigator;
         mRxBus = rxBus;
+    }
+
+    public void init() {
         getData();
         listenNoteBookItemClickEvent();
         listenNoteBookItemLongClickEvent();
     }
 
-    public void getData() {
+    private void getData() {
         mNoteBookLiveData = LiveDataReactiveStreams.fromPublisher(mNoteBookRepository.getNotes()
                 .subscribeOn(Schedulers.newThread())
                 .observeOn(AndroidSchedulers.mainThread()));
     }
 
     public void saveData(String note) {
-        if(mSelectedItem != null) {
+        if (mSelectedItem != null) {
             mNoteBookRepository.updateNotes(mSelectedItem.getId(), note);
-        }else{
+        } else {
             mNoteBookRepository.saveNotes(note);
         }
     }
 
     public void deleteItem(long id) {
-        AppDataBase.getAppDatabase().noteBookDao().delete(id);
+        mNoteBookRepository.delete(id);
     }
 
     public LiveData<List<Note>> getNoteBookLiveData() {

@@ -15,7 +15,7 @@ import okio.Buffer;
 
 public class LoggingInterceptor implements Interceptor {
 
-    private static final String TAG = "GLTIZ_API";
+    private static final String TAG = "Notes_API";
 
     @Override
     public Response intercept(Chain chain) throws IOException {
