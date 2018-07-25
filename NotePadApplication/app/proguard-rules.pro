@@ -19,3 +19,57 @@
 # If you keep the line number information, uncomment this to
 # hide the original source file name.
 #-renamesourcefileattribute SourceFile
+
+
+# RETROFIT
+-dontnote retrofit2.Platform
+-dontnote retrofit2.Platform$IOS$MainThreadExecutor
+-dontwarn retrofit2.Platform$Java8
+-keepattributes Signature
+-keepattributes Exceptions
+
+-keepclasseswithmembers class * {
+    @retrofit2.http.* <methods>;
+}
+
+-keep class com.google.gson.** { *; }
+
+-keep class com.google.inject.** { *; }
+
+-dontwarn okio.**
+
+# rxjava
+-keep class rx.schedulers.Schedulers {
+    public static <methods>;
+}
+-keep class rx.schedulers.ImmediateScheduler {
+    public <methods>;
+}
+-keep class rx.schedulers.TestScheduler {
+    public <methods>;
+}
+-keep class rx.schedulers.Schedulers {
+    public static ** test();
+}
+-keepclassmembers class rx.internal.util.unsafe.*ArrayQueue*Field* {
+    long producerIndex;
+    long consumerIndex;
+}
+-keepclassmembers class rx.internal.util.unsafe.BaseLinkedQueueProducerNodeRef {
+    long producerNode;
+    long consumerNode;
+}
+
+-keep public class * implements com.bumptech.glide.module.GlideModule
+-keep public class * extends com.bumptech.glide.AppGlideModule
+-keep public enum com.bumptech.glide.load.resource.bitmap.ImageHeaderParser$** {
+  **[] $VALUES;
+  public *;
+}
+
+-keep class com.google.** { *; }
+-dontwarn android.arch.util.paging.CountedDataSource
+-dontwarn android.arch.persistence.room.paging.LimitOffsetDataSource
+-keep interface com.google.** { *; }
+-keep public class com.google.android.gms.* { public *; }
+-dontwarn com.google.android.gms.**
