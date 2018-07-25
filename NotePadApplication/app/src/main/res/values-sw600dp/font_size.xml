@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<resources>
+    <dimen name="fnt_ss">12dp</dimen>
+    <dimen name="fnt_sm">14dp</dimen>
+    <dimen name="fnt_sl">16dp</dimen>
+    <dimen name="fnt_sx">18dp</dimen>
+    <dimen name="fnt_ms">20dp</dimen>
+    <dimen name="fnt_mm">22dp</dimen>
+    <dimen name="fnt_ml">24dp</dimen>
+    <dimen name="fnt_mx">26dp</dimen>
+    <dimen name="fnt_ls">28dp</dimen>
+    <dimen name="fnt_lm">30dp</dimen>
+    <dimen name="fnt_ll">32dp</dimen>
+    <dimen name="fnt_lx">34dp</dimen>
+    <dimen name="fnt_xs">36dp</dimen>
+    <dimen name="fnt_xm">38dp</dimen>
+    <dimen name="fnt_xl">40dp</dimen>
+    <dimen name="fnt_xx">42dp</dimen>
+
+</resources>
