@@ -17,6 +17,10 @@ android {
         enabled = true
     }
 
+    dexOptions {
+        javaMaxHeapSize "4g"
+    }
+
     buildTypes {
 
         debug {
@@ -93,10 +97,6 @@ dependencies {
     //rx-java
     implementation rxjavaDependencies.rxjava
     implementation rxjavaDependencies.rxandroid
-
-    //glide
-    implementation glideDependencies.glide
-    annotationProcessor glideDependencies.glideProcessor
 
     //butterknife
     implementation butterKnifeDependencies.butterknife

@@ -1,8 +1,8 @@
 ext {
 
-    supportLibVersion = '27.1.1'
+    supportLibVersion = '27.0.1'
     playServicesVersion = '11.6.2'
-    recyclerVersion = '27.1.1'
+    recyclerVersion = '27.0.1'
     constraintLayoutVersion = '1.1.0-beta5'
     butterknifeVersion = '8.7.0'
     twitterVersion = '3.0.0'

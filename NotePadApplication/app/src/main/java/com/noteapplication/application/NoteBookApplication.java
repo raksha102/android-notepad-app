@@ -7,7 +7,6 @@ package com.noteapplication.application;
 
 import android.app.Activity;
 import android.app.Application;
-import android.content.Context;
 import android.support.multidex.MultiDex;
 
 import com.noteapplication.injection.component.DaggerApplicationComponent;
@@ -34,14 +33,9 @@ public class NoteBookApplication extends Application implements HasActivityInjec
     }
 
     @Override
-    protected void attachBaseContext(Context base) {
-        super.attachBaseContext(base);
-        MultiDex.install(this);
-    }
-
-    @Override
     public void onCreate() {
         super.onCreate();
+        MultiDex.install(this);
         initDagger();
     }
 
