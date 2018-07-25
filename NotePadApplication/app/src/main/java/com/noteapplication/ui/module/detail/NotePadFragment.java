@@ -4,11 +4,13 @@ package com.noteapplication.ui.module.detail;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.noteapplication.R;
 import com.noteapplication.databinding.FragmentNotePadBinding;
@@ -93,9 +95,16 @@ public class NotePadFragment extends BaseFragment {
 
         if (isSaving) return;
 
+        String note = mTxtNote.getText().toString();
+
+        if (TextUtils.isEmpty(note)) {
+            Toast.makeText(getContext(), "Please enter some text", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
         isSaving = true;
         getNavigator().hideKeyBoard();
-        mViewModel.saveData(mTxtNote.getText().toString());
+        mViewModel.saveData(note);
         if (getActivity() != null)
             getActivity().onBackPressed();
     }
