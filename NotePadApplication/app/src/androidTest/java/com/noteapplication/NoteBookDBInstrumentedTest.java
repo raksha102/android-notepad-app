@@ -19,9 +19,6 @@ import java.util.List;
 
 import io.reactivex.Flowable;
 
-/**
- * Example local unit test, which will execute on the development machine (host).
- */
 @RunWith(AndroidJUnit4.class)
 public class NoteBookDBInstrumentedTest {
 
